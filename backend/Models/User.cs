@@ -1,13 +1,19 @@
-namespace backend.Models 
+namespace backend.Models
 {
-      public class User 
-      {
-         public int Id { get; set; }
-         public string Username { get; set; }
-         public string Password { get; set; }
-         public string Name { get; set; }
-         public string Surname { get; set; }
-         public string Email { get; set; }
-         public string Phone { get; set; }
-      }
+    public class User
+    {
+        public long Id { get; set; }
+        [Required]
+        public string Login { get; set; }
+        [Required]
+        public string Password { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Surname { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Phone { get; set; }
+    }
 }
