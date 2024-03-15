@@ -13,12 +13,8 @@ export interface Car {
 
 export interface User {
    id: number;
-   login: string;
-   password: string;
-   name: string;
-   surname: string;
    email: string;
-   phone: string;
+   password: string;
 }
 
 export interface Reservation {
