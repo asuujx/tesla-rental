@@ -1,23 +1,20 @@
-import { useEffect, useState } from "react";
-import { Location } from "../types";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import Home from "./pages/Home";
+import Location from "./pages/Location";
 
 function App() {
-   const [locations, setLocations] = useState<Location[]>([]);
-
-   useEffect(() => {
-      fetch("http://localhost:5000/locations")
-         .then((res) => res.json())
-         .then((data) => setLocations(data));
-   }, []);
-
    return (
-      <div>
-         <h1 className="text-6xl">Tesla Renting Service</h1>
-         {locations.map((location, index) => (
-            <div key={index}>
-               <h2>{location.name}</h2>
-            </div>
-         ))}
+      <div className="w-screen h-screen flex flex-col items-center">
+         <Header />
+
+         <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/locations/:locationID/cars" element={<Location />} />
+         </Routes>
+
+         <Footer />
       </div>
    );
 }
