@@ -22,6 +22,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseCors(MyAllowSpecificOrigins);
 
 // Routing and map controllers
