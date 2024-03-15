@@ -1,3 +1,5 @@
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -9,11 +11,20 @@ function Header() {
          >
             Tesla Renting Service
          </Link>
-         <div className="flex gap-4">
-            <h1 className="hover:font-semibold hover:scale-110 transition-all ease-in-out">
-               Profile
-            </h1>
-            <h1>Darkmode</h1>
+         <div className="flex gap-4 items-center">
+            <Link
+               to="/register"
+               className="hover:font-semibold hover:scale-110 transition-all ease-in-out"
+            >
+               Sign Up
+            </Link>
+            <Link
+               to="/login"
+               className="hover:font-semibold hover:scale-110 transition-all ease-in-out"
+            >
+               Login
+            </Link>
+            <FontAwesomeIcon icon={faMoon} className="text-xl" />
          </div>
       </div>
    );
