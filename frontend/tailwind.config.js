@@ -7,6 +7,9 @@ export default {
          laptop: "1024px",
          desktop: "1280px",
       },
+      objectFit: {
+         contain: "contain",
+      },
    },
    plugins: [],
 };
