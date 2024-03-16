@@ -13,7 +13,7 @@ function Registration() {
    });
 
    const onSubmit = async (data: RegisterData) => {
-      console.log("SUCCESS", data);
+      console.log(data);
    };
 
    return (
