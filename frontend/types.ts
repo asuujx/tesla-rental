@@ -1,4 +1,5 @@
 import { FieldError, UseFormRegister } from "react-hook-form";
+import validator from "validator";
 import { ZodType, z } from "zod";
 
 export interface Location {
@@ -14,40 +15,82 @@ export interface Car {
    locationId: number;
 }
 
-export interface User {
-   id: number;
+export interface ReservationData {
+   name: string;
+   surname: string;
    email: string;
-   password: string;
-}
-
-export interface Reservation {
-   id: number;
-   userId: number;
+   phone: string;
+   startLocation: string;
+   startDate: Date;
+   endLocation: string;
+   endDate: Date;
    carId: number;
-   startDate: string;
-   endDate: string;
    totalPrice: number;
 }
 
-export type RegisterData = {
+export type ReservationFormFieldProps = {
+   type: string;
+   name: ValidReservationFieldNames;
+   register: UseFormRegister<ReservationData>;
+   error: FieldError | undefined;
+};
+
+export type ValidReservationFieldNames =
+   | "name"
+   | "surname"
+   | "email"
+   | "phone"
+   | "startLocation"
+   | "startDate"
+   | "endLocation"
+   | "endDate"
+   | "carId";
+
+export const ReservationSchema: ZodType<ReservationData> = z
+   .object({
+      name: z.string(),
+      surname: z.string(),
+      email: z
+         .string()
+         .refine((email) => validator.isEmail(email), {
+            message: "Invalid email format",
+         }),
+      phone: z.string().refine((phone) => validator.isMobilePhone(phone), {
+         message: "Invalid phone number",
+      }),
+      startLocation: z.string(),
+      startDate: z.date(),
+      endLocation: z.string(),
+      endDate: z.date(),
+      carId: z.number(),
+      totalPrice: z
+         .number()
+         .min(0, { message: "Total price cannot be negative" }),
+   })
+   .refine((data) => data.endDate > data.startDate, {
+      message: "End date must be after start date",
+      path: ["endDate"],
+   });
+
+export type RegistrationData = {
    email: string;
    password: string;
    confirmPassword: string;
 };
 
-export type FormFieldProps = {
+export type RegistrationFormFieldProps = {
    type: string;
-   name: ValidFieldNames;
-   register: UseFormRegister<RegisterData>;
+   name: ValidRegistrationFieldNames;
+   register: UseFormRegister<RegistrationData>;
    error: FieldError | undefined;
 };
 
-export type ValidFieldNames = 
-| "email"
-| "password"
-| "confirmPassword";
+export type ValidRegistrationFieldNames =
+   | "email"
+   | "password"
+   | "confirmPassword";
 
-export const UserSchema: ZodType<RegisterData> = z
+export const UserSchema: ZodType<RegistrationData> = z
    .object({
       email: z.string().email(),
       password: z
