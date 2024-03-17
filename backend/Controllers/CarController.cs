@@ -24,5 +24,17 @@ namespace backend.Controllers
 
             return cars;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Car>> GetCar(long id)
+        {
+            var car = await _context.Cars.FindAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return car;
+        }
     }
 }

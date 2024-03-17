@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("locations")]
+    [Route("/locations")]
     public class LocationController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

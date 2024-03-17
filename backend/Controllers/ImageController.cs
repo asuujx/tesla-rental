@@ -4,7 +4,7 @@ using System.IO;
 
 namespace backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/images")]
     [ApiController]
     public class ImageController : ControllerBase
     {
