@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Location from "./pages/Location";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import Reservation from "./pages/Reservation";
 
 function App() {
    return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/locations/:locationID/cars" element={<Location />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/reservation" element={<Reservation />} />
          </Routes>
 
          <Footer />
