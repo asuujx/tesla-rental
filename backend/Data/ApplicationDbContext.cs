@@ -6,6 +6,5 @@ namespace backend.Data
       public DbSet<Car> Cars { get; set; }
       public DbSet<Location> Locations { get; set; }
       public DbSet<Reservation> Reservations { get; set; }
-      public DbSet<User> Users { get; set; }
    }
 }
