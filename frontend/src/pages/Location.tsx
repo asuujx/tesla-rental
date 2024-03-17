@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Car } from "../../types";
 
 function Location() {
@@ -32,9 +32,12 @@ function Location() {
                   </div>
                </div>
 
-               <button className="self-end bg-[#FF1744] text-white px-6 py-2 rounded-md">
+               <Link
+                  to={`/reservation?location=${locationID}&car=${car.id}`}
+                  className="self-end bg-[#FF1744] text-white px-6 py-2 rounded-md"
+               >
                   Reserve
-               </button>
+               </Link>
             </div>
          ))}
       </div>
