@@ -1,18 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { RegisterData, UserSchema } from "../../types";
-import FormField from "../components/form/FormField";
+import { RegistrationData, UserSchema } from "../../types";
+import RegistrationFormField from "../components/form/RegistrationFormField";
 
 function Registration() {
    const {
       register,
       handleSubmit,
       formState: { errors },
-   } = useForm<RegisterData>({
+   } = useForm<RegistrationData>({
       resolver: zodResolver(UserSchema),
    });
 
-   const onSubmit = async (data: RegisterData) => {
+   const onSubmit = async (data: RegistrationData) => {
+      // TODO: Send a POST request to the server
       console.log(data);
    };
 
@@ -21,7 +22,7 @@ function Registration() {
          <h1 className="text-center text-4xl font-semibold">Sign Up</h1>
          <div className="flex flex-col">
             <label className="text-lg font-medium">Email</label>
-            <FormField
+            <RegistrationFormField
                type="email"
                name="email"
                register={register}
@@ -31,7 +32,7 @@ function Registration() {
 
          <div className="flex flex-col">
             <label className="text-lg font-medium">Password</label>
-            <FormField
+            <RegistrationFormField
                type="password"
                name="password"
                register={register}
@@ -41,7 +42,7 @@ function Registration() {
 
          <div className="flex flex-col">
             <label className="text-lg font-medium">Confirm Password</label>
-            <FormField
+            <RegistrationFormField
                type="password"
                name="confirmPassword"
                register={register}
